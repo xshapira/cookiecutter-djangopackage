@@ -80,8 +80,8 @@ def test_views_with_models(cookies):
         views = ['CreateView', 'DeleteView',
                  'DetailView', 'UpdateView', 'ListView']
         for view in views:
-            assert 'Pug{}'.format(view) in views_file_txt
-            assert 'Dog{}'.format(view) in views_file_txt
+            assert f'Pug{view}' in views_file_txt
+            assert f'Dog{view}' in views_file_txt
 
 
 def test_views_without_models(cookies):
@@ -104,11 +104,11 @@ def test_urls_regex_with_model(cookies):
         urls_file = result.project.join('cookies', 'urls.py')
         urls_file_txt = urls_file.read()
         for model in extra_context['models'].split(','):
-            assert '^{}/~create/$'.format(model) in urls_file_txt
-            assert '^{}/(?P<pk>\d+)/~delete/$'.format(model) in urls_file_txt
-            assert '^{}/(?P<pk>\d+)/$'.format(model) in urls_file_txt
-            assert '^{}/(?P<pk>\d+)/~update/$'.format(model) in urls_file_txt
-            assert '^{}/$'.format(model) in urls_file_txt
+            assert f'^{model}/~create/$' in urls_file_txt
+            assert f'^{model}/(?P<pk>\d+)/~delete/$' in urls_file_txt
+            assert f'^{model}/(?P<pk>\d+)/$' in urls_file_txt
+            assert f'^{model}/(?P<pk>\d+)/~update/$' in urls_file_txt
+            assert f'^{model}/$' in urls_file_txt
 
 
 def test_urls_without_model(cookies):
